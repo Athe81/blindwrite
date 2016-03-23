@@ -1,8 +1,155 @@
+<!DOCTYPE html>
 <html>
-<head>
-<title>blindwrite</title>
-</head>
-<body>
-<h1>Comming soon</h1>
-</body>
+    <head>
+        <link href='https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700'
+        rel='stylesheet' type='text/css'>
+        <style>
+            .hide {
+                display: none;
+            }
+            .keycap {
+                border-style: solid;
+                border-width: 1px 5px 5px 1px;
+                border-radius: 8px;
+                padding: 15px 25px 15px 25px;
+            }
+            .keycapMini {
+                font-size: 15px;
+                border-style: solid;
+                border-width: 1px 2px 2px 1px;
+                border-radius: 4px;
+                padding: 3px 5px 3px 5px;
+                margin: 2px;
+            }
+            .result {
+                font-size: 15px;
+                margin: 30px 0px 0px 0px;
+            }
+            body {
+                overflow: hidden;
+                background-color:  #669966;
+                font-size: 30px;
+                font-family: "Ubuntu Mono";
+                text-shadow: 1px 1px 1px #555;
+                color: #333333;
+                margin: 40px;
+            }
+            header {
+                height: 80px;
+                padding: 20px 0px 0px 0px;
+            }
+            span {
+                font-size: 40px;
+            }
+            select {
+                border: solid;
+                font-size: 20px;
+                padding: 5px 10px 5px 10px;
+                background-color: #669966;
+            }
+            button {
+                font-size: 20px;
+                border: solid;
+                padding: 5px 15px 5px 15px;
+                background-color: #669966;
+            }
+            button:hover{
+                background-color: #336633;
+            }
+            #txtDone {
+                color: gray;
+            }
+            #txtNow {
+                font-size: 50px;
+                border-style: none none solid none;
+            }
+            #exercise {
+                top: 0px;
+                height: 100%;
+            }
+            #preview {
+                width: 200px;
+                height: 80px;
+            }
+            #keyboard {
+                position: absolute;
+                bottom: 0px;
+                width: 1000px;
+                height: 400px;
+            }
+            #keyboardSVG {
+                position: inherit;
+                height: 100%;
+                width: 100%;
+                left: 0;
+                bottom: 0;
+            }
+        </style>
+        <title>Blindwrite - Your way to 10 finger writing</title>
+    </head>
+    <body onload="init();">
+        <header>
+            <span class="keycap">B</span>
+            <span class="keycap">L</span>
+            <span class="keycap">I</span>
+            <span class="keycap">N</span>
+            <span class="keycap">D</span>
+            <span class="keycap">W</span>
+            <span class="keycap">R</span>
+            <span class="keycap">I</span>
+            <span class="keycap">T</span>
+            <span class="keycap">E</span>
+        </header>
+        <section id="welcome" class="hide">
+            <h1>Welcome to blindwrite</h1>
+            <p>
+                blindwrite is a completly free website to learn 10 finger
+                writing.
+                <br>
+                blindwrite is in a alpha state. Please report issues on
+                github.
+                <br>
+                <br>
+                Important features:
+                <ul>
+                    <li>completly free</li>
+                    <li>no registration</li>
+                    <li>supports special keyboard design</li>
+                    <li>supports special and own keyboard layouts</li>
+                    <li>no personal data stored on the server</li>
+                    <li>open source</li>
+                </ul>
+                <button id="startSetup">Let's start</button>
+        </section>
+        <section id="setup" class ="hide">
+            <h1>Setup</h1>
+            <p>Just two steps till you can start with your training</p>
+            <p>
+                Step 1: Select your keyboard design:
+                <select id="selectKeyboard">
+                </select>
+            </p>
+            <div id="preview"></div>
+            <p id="language">
+                Step 2: Select your layout:
+                <select id="selectLayout">
+                </select>
+                <br>
+                or create your own layout (TODO)
+            </p>
+            <button id="saveConfig">save</button>
+        </section>
+        <section id="exercise" class="hide">
+            <span id="txtDone"></span><span id="txtNow"></span><span id="txtNext"></span>
+            <br>
+            <div class="result">Ranking (first ist best):</div>
+            <div id="keysRanked"></div>
+            <div class="result">Next keys:</div>
+            <div id="keysNext"></div>
+            <div id="keyboard"></div>
+        </section>
+        <script src="keyboard.js"></script>
+        <script src="language.js"></script>
+        <script src="main.js"></script>
+    </body>
 </html>
