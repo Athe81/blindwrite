@@ -131,6 +131,9 @@ function exercise() {
     function calculatePoints() {
         for (var r in rankedKeys) {
             var k = rankedKeys[r].key;
+            if (typeof(keyLogging[k] === "undefined")) {
+                continue;
+            }
             var speed = 2000 - (keyLogging[k].time / keyLogging[k].count);
             if (speed < 0) {speed = 0};
             var errors = (1 - (keyLogging[k].err / keyLogging[k].count));
@@ -141,7 +144,6 @@ function exercise() {
             rankedKeys[r].count += keyLogging[k].count;
         }
         rankedKeys.sort(function(a, b){return b.points - a.points});
-        console.log(rankedKeys);
         localStorage.setItem("rankedKeys", JSON.stringify(rankedKeys));
     };
 };
