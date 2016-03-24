@@ -275,6 +275,10 @@ function showWelcome() {
     };
 };
 
+function setKey(key) {
+    console.log(key);
+};
+
 function init() {
     //window.localStorage.clear();
 
