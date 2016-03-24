@@ -23,9 +23,8 @@
     font-size: 15px;
 }
 body {
-    overflow: hidden;
     background-color: #333333;
-    font-size: 30px;
+    font-size: 40px;
     font-family: "Ubuntu Mono";
     text-shadow: 1px 1px 1px #222;
     color: #447744;
@@ -34,9 +33,7 @@ body {
 header {
     height: 80px;
     padding: 20px 0px 0px 0px;
-}
-span {
-    font-size: 40px;
+    white-space: nowrap;
 }
 select {
     border: solid;
@@ -50,11 +47,11 @@ button {
     padding: 5px 15px 5px 15px;
     background-color: #669966;
 }
+button:hover {
+    background-color: #336633;
+}
 a {
     color: #000000;
-}
-button:hover{
-    background-color: #336633;
 }
 rect {
     fill: #669966;
