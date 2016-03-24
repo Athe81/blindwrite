@@ -16,7 +16,7 @@ var hint = function() {
         reset();
         storedKeyDOM = keyDOM;
         timer = window.setTimeout(function() {
-            storedKeyDOM.setAttribute("fill", "#336633");
+            storedKeyDOM.setAttribute("fill", "#447744");
             storedKeyDOM.setAttribute("fill-opacity", 1);
         }, HINT_DELAY);
     };
