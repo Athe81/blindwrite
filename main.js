@@ -48,7 +48,7 @@ function exercise() {
     function updateView() {
         txtDone.innerHTML = lessonString.substring(0, pos);
         txtNow.innerHTML = lessonString[pos] || "";
-        txtNow.style.background = "";
+        txtNow.classList.remove("error");
         txtNext.innerHTML = lessonString.substring(pos+1, TXT_LENGTH);
 
         if (pos === 0) {
@@ -123,7 +123,7 @@ function exercise() {
             timeStamp = new Date().getTime();
             error = false;
         } else {
-            txtNow.style.background = "#996666";
+            txtNow.classList.add("error");
             error = true;
         }
     };

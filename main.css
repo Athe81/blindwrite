@@ -57,11 +57,14 @@ button:hover{
     background-color: #336633;
 }
 #txtDone {
-    color: gray;
+    color: #666666;
 }
 #txtNow {
     font-size: 50px;
     border-style: none none solid none;
+}
+#txtNow.error {
+    background: #993333;
 }
 #exercise {
     top: 0px;
