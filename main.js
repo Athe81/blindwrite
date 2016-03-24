@@ -131,7 +131,7 @@ function exercise() {
     function calculatePoints() {
         for (var r in rankedKeys) {
             var k = rankedKeys[r].key;
-            if (typeof(keyLogging[k] === "undefined")) {
+            if (typeof(keyLogging[k]) === "undefined") {
                 continue;
             }
             var speed = 2000 - (keyLogging[k].time / keyLogging[k].count);
