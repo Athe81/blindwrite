@@ -8,7 +8,7 @@ var hint = function() {
     var reset = function() {
         window.clearTimeout(timer);
         if (typeof(storedKeyDOM) !== "undefined") {
-            storedKeyDOM.setAttribute("fill-opacity", 0);
+            storedKeyDOM.classList.remove("hint");
         }
     };
 
@@ -16,8 +16,7 @@ var hint = function() {
         reset();
         storedKeyDOM = keyDOM;
         timer = window.setTimeout(function() {
-            storedKeyDOM.setAttribute("fill", "#447744");
-            storedKeyDOM.setAttribute("fill-opacity", 1);
+            storedKeyDOM.classList.add("hint");
         }, HINT_DELAY);
     };
 

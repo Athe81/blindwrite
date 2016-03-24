@@ -56,6 +56,13 @@ a {
 button:hover{
     background-color: #336633;
 }
+rect {
+    fill: #669966;
+    fill-opacity: 0;
+}
+rect.hint {
+    fill-opacity: 1;
+}
 #txtDone {
     color: #666666;
 }
