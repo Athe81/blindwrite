@@ -24,7 +24,7 @@
 }
 body {
     background-color: #333333;
-    font-size: 40px;
+    font-size: 30px;
     font-family: "Ubuntu Mono";
     text-shadow: 1px 1px 1px #222;
     color: #447744;
@@ -62,6 +62,7 @@ rect.hint {
 }
 #txtDone {
     color: #666666;
+    font-size: 40px;
 }
 #txtNow {
     font-size: 50px;
@@ -69,6 +70,9 @@ rect.hint {
 }
 #txtNow.error {
     background: #993333;
+}
+#txtNext {
+    font-size: 40px;
 }
 #exercise {
     top: 0px;
