@@ -99,7 +99,7 @@ function exercise() {
                 continue;
             }
             var keyPos = Math.floor(Math.random() * rankedKeys.length);
-            lessonString += orderdKeys[keyPos];
+            lessonString += rankedKeys[keyPos].key;
         }
         updateView();
         hint.set(keyboard.getDOM(lessonString[pos]));
