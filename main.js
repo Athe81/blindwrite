@@ -84,7 +84,9 @@ function exercise() {
                    "points": 0,
                    "count": 0
                });
-               orderdKeys.splice(0, 1);
+                orderdKeys.splice(0, 1);
+                localStorage.setItem("rankedKeys", JSON.stringify(rankedKeys));
+                localStorage.setItem("orderdKeys", JSON.stringify(orderdKeys));
            }
 
         keyLogging = {};
@@ -227,7 +229,6 @@ function setup() {
                    }
             }
         }
-        localStorage.setItem("orderdKeys", JSON.stringify(orderdKeys));
         var rankedKeys = [];
         for (var i = 0; i < 4; i++) {
             rankedKeys.push({
@@ -235,9 +236,10 @@ function setup() {
                 "points": 0,
                 "count": 0
             });
+            orderdKeys.splice(0, 1);
         }
-        orderdKeys = orderdKeys.splice(0, 4);
         localStorage.setItem("rankedKeys", JSON.stringify(rankedKeys));
+        localStorage.setItem("orderdKeys", JSON.stringify(orderdKeys));
     }
 
     function save() {
@@ -289,7 +291,7 @@ function setKey(key) {
 }
 
 function init() {
-    //window.localStorage.clear();
+    window.localStorage.clear();
 
     // drop backspace
     document.addEventListener("keydown", function(event) {
