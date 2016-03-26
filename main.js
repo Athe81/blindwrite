@@ -291,7 +291,7 @@ function setKey(key) {
 }
 
 function init() {
-    window.localStorage.clear();
+    //window.localStorage.clear();
 
     // drop backspace
     document.addEventListener("keydown", function(event) {
