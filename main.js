@@ -232,7 +232,7 @@ function setup() {
         var rankedKeys = [];
         for (var i = 0; i < 4; i++) {
             rankedKeys.push({
-                "key": orderdKeys[i],
+                "key": orderdKeys[0],
                 "points": 0,
                 "count": 0
             });
