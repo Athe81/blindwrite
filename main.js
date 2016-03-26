@@ -1,9 +1,10 @@
 "use strict";
-const TXT_LENGTH = 50;
-const HINT_DELAY = 1500;
+var TXT_LENGTH = 50;
+var HINT_DELAY = 1500;
 
 var hint = function() {
-    var storedKeyDOM, timer;
+    var storedKeyDOM;
+    var timer;
 
     var reset = function() {
         window.clearTimeout(timer);
@@ -21,13 +22,16 @@ var hint = function() {
     };
 
     return {
-        reset, 
-        set
+        reset: reset,
+        set: set
     };
 }();
 
 function exercise() {
-    var lessonString, pos, error, timeStamp;
+    var lessonString;
+    var pos;
+    var error;
+    var timeStamp;
     var keyLogging = {};
     var rankedKeys = JSON.parse(localStorage.getItem("rankedKeys"));
     var orderdKeys = JSON.parse(localStorage.getItem("orderdKeys"));
@@ -52,23 +56,23 @@ function exercise() {
 
         if (pos === 0) {
             var buffer = "";
-            for (var i = 0; i < rankedKeys.length; i++) {
+            rankedKeys.forEach(function(item, _) {
                 buffer += '<span class="keycapMini" title="Points: ';
-                buffer += rankedKeys[i].points;
+                buffer += item.points;
                 buffer += '">';
-                buffer += rankedKeys[i].key;
+                buffer += item.key;
                 buffer += '</span>';
-            }
+            });
             document.getElementById("keysRanked").innerHTML = buffer;
             buffer = "";
-            for (var i = rankedKeys.length; i < orderdKeys.length; i++) {
+            orderdKeys.forEach(function(item, _) {
                 buffer += '<span class="keycapMini">';
-                buffer += orderdKeys[i];
+                buffer += item;
                 buffer += '</span>';
-            }
+            });
             document.getElementById("keysNext").innerHTML = buffer;
         }
-    };
+    }
 
     function newLesson() {
         var space = 4 + Math.floor(Math.random() * 4);
@@ -80,12 +84,13 @@ function exercise() {
                    "points": 0,
                    "count": 0
                });
+               orderdKeys = orderdKeys.splice(0, 1);
            }
 
         keyLogging = {};
         lessonString = "";
         pos = 0;
-        for ( var i = 0; i < TXT_LENGTH; i++ ) {
+        for (var i = 0; i < TXT_LENGTH; i++) {
             if (i === space && i < TXT_LENGTH-2) {
                 lessonString += " ";
                 space += 4 + Math.floor(Math.random() * 4);
@@ -96,7 +101,7 @@ function exercise() {
         }
         updateView();
         hint.set(keyboard.getDOM(lessonString[pos]));
-    };
+    }
 
     function checkInput(event) {
         if (lessonString[pos] === String.fromCharCode(event.which)) {
@@ -125,47 +130,51 @@ function exercise() {
             txtNow.classList.add("error");
             error = true;
         }
-    };
+    }
 
     function calculatePoints() {
-        for (var r in rankedKeys) {
-            var k = rankedKeys[r].key;
+        rankedKeys.forEach(function(item, index) {
+            var k = item.key;
             if (typeof(keyLogging[k]) === "undefined") {
-                continue;
+                return;
             }
             var speed = 2000 - (keyLogging[k].time / keyLogging[k].count);
-            if (speed < 0) {speed = 0};
+            if (speed < 0) {
+                speed = 0;
+            }
             var errors = (1 - (keyLogging[k].err / keyLogging[k].count));
             var points = (speed*errors);
-            points += rankedKeys[r].points * 2;
+            points += item.points * 2;
             points /= 3;
-            rankedKeys[r].points = points.toFixed(2);
-            rankedKeys[r].count += keyLogging[k].count;
-        }
-        rankedKeys.sort(function(a, b){return b.points - a.points});
+            rankedKeys[index].points = points.toFixed(2);
+            rankedKeys[index].count += keyLogging[k].count;
+        });
+        rankedKeys.sort(function(a, b){
+            return b.points - a.points;
+        });
         localStorage.setItem("rankedKeys", JSON.stringify(rankedKeys));
-    };
-};
+    }
+}
 
 var keyboard = function(){
     var keyDOMs = {};
 
     function setKeyboard(){
         document.getElementById("keyboard").innerHTML =
-            keyboards[localStorage.keyboard]["svg"];
-        var layout = keyboards[localStorage.keyboard]["layout"][localStorage.layout]["mapping"];
+            keyboards[localStorage.keyboard].svg;
+        var layout = keyboards[localStorage.keyboard].layout[localStorage.layout].mapping;
         for (var l in layout) {
             keyDOMs[l] = document.getElementById(layout[l]);
         }
-    };
-    
+    }
+
     function getDOM(key) {
         return keyDOMs[key];
-    };
+    }
 
     return {
-        setKeyboard,
-        getDOM
+        setKeyboard: setKeyboard,
+        getDOM: getDOM
     };
 }();
 
@@ -173,6 +182,7 @@ function setup() {
     var setup = document.getElementById("setup");
     var saveConfig = document.getElementById("saveConfig");
     var selectKeyboard = document.getElementById("selectKeyboard");
+    var selectLayout = document.getElementById("selectLayout");
 
     setup.classList.remove("hide");
     updateKeyboards();
@@ -188,14 +198,13 @@ function setup() {
             updateLayout(event.target.value);
             showKeyboardPreview(event.target.value);
         };
-    };
+    }
 
     function showKeyboardPreview(keyboardType) {
-        document.getElementById("preview").innerHTML = keyboards[keyboardType]["svg"]
+        document.getElementById("preview").innerHTML = keyboards[keyboardType].svg;
     }
 
     function updateLayout(keyboardType) {
-        var selectLayout = document.getElementById("selectLayout");
         selectLayout.innerHTML = "";
         for (var l in keyboards[keyboardType].layout) {
             var option = document.createElement("option");
@@ -203,16 +212,16 @@ function setup() {
             selectLayout.add(option);
         }
         selectLayout.selectedIndex = -1;
-    };
+    }
 
     function createOrder() {
         var orderdKeys = [];
-        var layout = keyboards[localStorage.keyboard]["layout"][localStorage.layout];
-        var order = keyboards[localStorage.keyboard]["ordering"];
+        var layout = keyboards[localStorage.keyboard].layout[localStorage.layout];
+        var order = keyboards[localStorage.keyboard].ordering;
         for (var o = 0; o < order.length; o++) {
-            for (var l in layout["mapping"]) {
-                if (layout["mapping"][l] === order[o] &&
-                    language[layout["language"]].indexOf(l) !== -1
+            for (var l in layout.mapping) {
+                if (layout.mapping[l] === order[o] &&
+                    language[layout.language].indexOf(l) !== -1
                    ) {
                        orderdKeys.push(l);
                    }
@@ -227,8 +236,9 @@ function setup() {
                 "count": 0
             });
         }
+        orderdKeys = orderdKeys.splice(0, 4);
         localStorage.setItem("rankedKeys", JSON.stringify(rankedKeys));
-    };
+    }
 
     function save() {
         if (
@@ -237,14 +247,14 @@ function setup() {
         ) {
             alert("You have to select a keyboard design and a layout");
             return;
-        };
+        }
 
         localStorage.keyboard = selectKeyboard.value;
         localStorage.layout = selectLayout.value;
         createOrder();
         setup.classList.add("hide");
         exercise();
-    };
+    }
 
     saveConfig.onclick = function() {
         save();
@@ -253,9 +263,9 @@ function setup() {
         if (event.keyCode === 13) {
             event.preventDefault();
             save();
-        };
+        }
     };
-};
+}
 
 function showWelcome() {
     var welcome = document.getElementById("welcome");
@@ -270,13 +280,13 @@ function showWelcome() {
         if (event.keyCode === 13) {
             welcome.classList.add("hide");
             setup();
-        };
+        }
     };
-};
+}
 
 function setKey(key) {
     console.log(key);
-};
+}
 
 function init() {
     //window.localStorage.clear();
