@@ -80,11 +80,11 @@ function exercise() {
             rankedKeys[rankedKeys.length-1].count > 40
            ) {
                rankedKeys.push({
-                   "key": orderdKeys[rankedKeys.length],
+                   "key": orderdKeys[0],
                    "points": 0,
                    "count": 0
                });
-               orderdKeys = orderdKeys.splice(0, 1);
+               orderdKeys.splice(0, 1);
            }
 
         keyLogging = {};
