@@ -53,13 +53,28 @@
             <div id="preview"></div>
             <p id="language">
                 Step 2: Select your layout:
-                <select id="selectLayout">
+                <select id="selectLayout" disabled>
                 </select>
                 <br>
-                or create your own layout (TODO)
+                or <button id="ownLayout" disabled>create your own layout (TODO)</button>
             </p>
-            <button id="saveConfig">save</button>
+            <button id="saveConfig" disabled>save</button>
         </section>
+        <selection id="setupLanguage" class="hide">
+            <h1>Setup layout lanuage</h1>
+            <p>
+                Select your language:
+                <select id="selectLanguage">
+                </select>
+            </p>
+            <button id="startLayoutConfig">start layout config</button>
+        </selection>
+        <selection id="setupLayout" class="hide">
+            <h1>Setup layout</h1>
+            <p>Click the key for the following letter:</p>
+            <p id="setupLayoutKey">X</p>
+            <div id="setupLayoutKeyboard" class="keyboard"></div>
+        </selection>
         <section id="exercise" class="hide">
             <span id="txtDone"></span><span id="txtNow"></span><span id="txtNext"></span>
             <br>
@@ -67,7 +82,7 @@
             <div id="keysRanked"></div>
             <div class="result">Next keys:</div>
             <div id="keysNext"></div>
-            <div id="keyboard"></div>
+            <div id="keyboard" class="keyboard"></div>
         </section>
         <script src="keyboard.js"></script>
         <script src="language.js"></script>

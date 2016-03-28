@@ -1,5 +1,5 @@
 "use strict";
-var language = {
+var languages = {
     "en_US": [
         "a",
         "b",

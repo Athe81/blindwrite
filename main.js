@@ -182,12 +182,47 @@ var keyboard = function(){
 
 function setup() {
     var setup = document.getElementById("setup");
+    var setupLanguage = document.getElementById("setupLanguage");
+    var setupLayout = document.getElementById("setupLayout");
     var saveConfig = document.getElementById("saveConfig");
     var selectKeyboard = document.getElementById("selectKeyboard");
     var selectLayout = document.getElementById("selectLayout");
+    var ownLayout = document.getElementById("ownLayout");
+    var selectLanguage = document.getElementById("selectLanguage");
+    var startLayoutConfig = document.getElementById("startLayoutConfig");
 
     setup.classList.remove("hide");
     updateKeyboards();
+
+    selectKeyboard.onchange = function(event) {
+        updateLayout(event.target.value);
+        showKeyboardPreview(event.target.value);
+        selectLayout.disabled = false;
+        //ownLayout.disabled = false;
+    };
+
+    selectLayout.onchange = function() {
+        saveConfig.disabled = false;
+    };
+
+    ownLayout.onclick = function() {
+        setup.classList.add("hide");
+        for (var l in languages) {
+            var option = document.createElement("option");
+            option.text = l;
+            selectLanguage.add(option);
+        }
+        setupLanguage.classList.remove("hide");
+    };
+
+    startLayoutConfig.onclick = function() {
+        setupLanguage.classList.add("hide");
+        document.getElementById("setupLayoutKeyboard").innerHTML =
+            keyboards[selectKeyboard.value].svg;
+        setupLayout.classList.remove("hide");
+        localStorage.keyboard = selectKeyboard.value;
+        configKeys.setLanguage(languages[selectLanguage.value]);
+    };
 
     function updateKeyboards() {
         selectKeyboard.innerHTML = "";
@@ -197,10 +232,6 @@ function setup() {
             selectKeyboard.add(option);
         }
         selectKeyboard.selectedIndex = -1;
-        selectKeyboard.onchange = function(event) {
-            updateLayout(event.target.value);
-            showKeyboardPreview(event.target.value);
-        };
     }
 
     function showKeyboardPreview(keyboardType) {
@@ -215,6 +246,7 @@ function setup() {
             selectLayout.add(option);
         }
         selectLayout.selectedIndex = -1;
+        selectLayout.disabled = true;
     }
 
     function createOrder() {
@@ -224,7 +256,7 @@ function setup() {
         for (var o = 0; o < order.length; o++) {
             for (var l in layout.mapping) {
                 if (layout.mapping[l] === order[o] &&
-                    language[layout.language].indexOf(l) !== -1
+                    languages[layout.language].indexOf(l) !== -1
                    ) {
                        orderdKeys.push(l);
                    }
@@ -262,12 +294,6 @@ function setup() {
     saveConfig.onclick = function() {
         save();
     };
-    saveConfig.onkeydown = function(event) {
-        if (event.keyCode === 13) {
-            event.preventDefault();
-            save();
-        }
-    };
 }
 
 function showWelcome() {
@@ -279,17 +305,41 @@ function showWelcome() {
         welcome.classList.add("hide");
         setup();
     };
-    startSetup.onkeydown = function(event) {
-        if (event.keyCode === 13) {
-            welcome.classList.add("hide");
-            setup();
-        }
-    };
 }
 
-function setKey(key) {
-    console.log(key);
-}
+var configKeys = function() {
+    var lang;
+    var pos = 0;
+    var mapping = {};
+    var setupLayoutKey = document.getElementById("setupLayoutKey");
+
+    function update() {
+        if (pos < lang.length) {
+            setupLayoutKey.innerHTML = lang[pos];
+            pos++;
+        } else {
+            console.log("finished");
+        }
+    }
+
+    function setLanguage(l) {
+        lang = l;
+        update();
+    }
+
+    function setKey(id) {
+        if (typeof(lang) === "undefined") {
+            return;
+        };
+        mapping[lang[pos - 1]] = id;
+        update();
+    }
+
+    return {
+        setLanguage: setLanguage,
+        setKey: setKey
+    }
+}();
 
 function init() {
     //window.localStorage.clear();

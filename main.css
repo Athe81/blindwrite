@@ -22,6 +22,12 @@
 .github {
     font-size: 15px;
 }
+.keyboard {
+    position: absolute;
+    bottom: 0px;
+    width: 1000px;
+    height: 400px;
+}
 body {
     background-color: #333333;
     font-size: 30px;
@@ -81,12 +87,6 @@ rect.hint {
 #preview {
     width: 200px;
     height: 80px;
-}
-#keyboard {
-    position: absolute;
-    bottom: 0px;
-    width: 1000px;
-    height: 400px;
 }
 #keyboardSVG {
     position: inherit;
