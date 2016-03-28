@@ -190,6 +190,7 @@ function setup() {
     updateKeyboards();
 
     function updateKeyboards() {
+        selectKeyboard.innerHTML = "";
         for (var k in keyboards) {
             var option = document.createElement("option");
             option.text = k;
