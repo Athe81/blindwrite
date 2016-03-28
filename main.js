@@ -76,9 +76,7 @@ function exercise() {
 
     function newLesson() {
         var space = 4 + Math.floor(Math.random() * 4);
-        if (rankedKeys[rankedKeys.length-1].points > 1500 &&
-            rankedKeys[rankedKeys.length-1].count > 40
-           ) {
+        if (rankedKeys[rankedKeys.length-1].points > 1500) {
                rankedKeys.push({
                    "key": orderdKeys[0],
                    "points": 0,
@@ -146,8 +144,10 @@ function exercise() {
             }
             var errors = (1 - (keyLogging[k].err / keyLogging[k].count));
             var points = (speed*errors);
-            points += item.points * 2;
-            points /= 3;
+            if (item.points !== 0) {
+                points += item.points * 2;
+                points /= 3;
+            }
             rankedKeys[index].points = points.toFixed(2);
             rankedKeys[index].count += keyLogging[k].count;
         });
