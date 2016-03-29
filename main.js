@@ -8,7 +8,7 @@ var hint = function() {
 
     var reset = function() {
         window.clearTimeout(timer);
-        if (typeof(storedKeyDOM) !== "undefined") {
+        if ("classList" in storedKeyDOM) {
             storedKeyDOM.classList.remove("hint");
         }
     };
