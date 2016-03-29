@@ -17,9 +17,7 @@ var hint = function() {
         reset();
         storedKeyDOM = keyDOM;
         timer = window.setTimeout(function() {
-            if ("classList" in storedKeyDOM) {
-                storedKeyDOM.classList.add("hint");
-            };
+            storedKeyDOM.classList.add("hint");
         }, HINT_DELAY);
     };
 
