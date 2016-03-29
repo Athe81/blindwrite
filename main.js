@@ -13,7 +13,7 @@ var hint = function() {
         }
     };
 
-    var set =  function(keyDOM) {
+    var set = function(keyDOM) {
         reset();
         storedKeyDOM = keyDOM;
         timer = window.setTimeout(function() {
@@ -190,13 +190,14 @@ function setup() {
     var ownLayout = document.getElementById("ownLayout");
     var selectLanguage = document.getElementById("selectLanguage");
     var startLayoutConfig = document.getElementById("startLayoutConfig");
+    var preview = document.getElementById("preview");
 
     setup.classList.remove("hide");
     updateKeyboards();
 
     selectKeyboard.onchange = function(event) {
         updateLayout(event.target.value);
-        showKeyboardPreview(event.target.value);
+        preview.innerHTML = keyboards[event.target.value].svg;
         selectLayout.disabled = false;
         //ownLayout.disabled = false;
     };
@@ -235,7 +236,6 @@ function setup() {
     }
 
     function showKeyboardPreview(keyboardType) {
-        document.getElementById("preview").innerHTML = keyboards[keyboardType].svg;
     }
 
     function updateLayout(keyboardType) {
@@ -287,6 +287,7 @@ function setup() {
         localStorage.keyboard = selectKeyboard.value;
         localStorage.layout = selectLayout.value;
         createOrder();
+        preview.innerHTML = "";
         setup.classList.add("hide");
         exercise();
     }
