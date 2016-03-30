@@ -1,91 +1,91 @@
 <!DOCTYPE html>
 <html lang="en-US">
-    <head>
-        <meta charset="UTF-8">
-        <link href='https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700'
-        rel='stylesheet'>
-        <link rel="stylesheet" href="main.css">
-        <title>Blindwrite - Your way to 10 finger writing</title>
-    </head>
-    <body onload="init();">
-        <header>
-            <span class="keycap">B</span>
-            <span class="keycap">L</span>
-            <span class="keycap">I</span>
-            <span class="keycap">N</span>
-            <span class="keycap">D</span>
-            <span class="keycap">W</span>
-            <span class="keycap">R</span>
-            <span class="keycap">I</span>
-            <span class="keycap">T</span>
-            <span class="keycap">E</span>
-            <a class="github" href="https://github.com/Bubblepoint/blindwrite" target="_blank">show on github</a>
-        </header>
-        <section id="welcome" class="hide">
-            <h1>Welcome to blindwrite</h1>
-            <p>
-                blindwrite is a completly free website to learn 10 finger
-                writing.
-                <br>
-                blindwrite is in a early development state. Please report issues on
-                <a href="https://github.com/Bubblepoint/blindwrite">github</a>.
-                <br>
-                <br>
-                Important features:
-                <ul>
-                    <li>completly free</li>
-                    <li>no registration</li>
-                    <li>open source</li>
-                    <li>supports special keyboard design</li>
-                    <li>supports special/own keyboard layouts</li>
-                    <li>no personal data stored on the server</li>
-                </ul>
-                <button id="startSetup">Let's start</button>
-        </section>
-        <section id="setup" class ="hide">
-            <h1>Setup</h1>
-            <p>Just two steps till you can start with your training</p>
-            <p>
-                Step 1: Select your keyboard design:
-                <select id="selectKeyboard">
-                </select>
-            </p>
-            <div id="preview"></div>
-            <p id="language">
-                Step 2: Select your layout:
-                <select id="selectLayout" disabled>
-                </select>
-                <br>
-                or <button id="ownLayout" disabled>create your own layout (TODO)</button>
-            </p>
-            <button id="saveConfig" disabled>save</button>
-        </section>
-        <selection id="setupLanguage" class="hide">
-            <h1>Setup layout lanuage</h1>
-            <p>
-                Select your language:
-                <select id="selectLanguage">
-                </select>
-            </p>
-            <button id="startLayoutConfig">start layout config</button>
-        </selection>
-        <selection id="setupLayout" class="hide">
-            <h1>Setup layout</h1>
-            <p>Click the key for the following letter:</p>
-            <p id="setupLayoutKey">X</p>
-            <div id="setupLayoutKeyboard" class="keyboard"></div>
-        </selection>
-        <section id="exercise" class="hide">
-            <span id="txtDone"></span><span id="txtNow"></span><span id="txtNext"></span>
-            <br>
-            <div class="result">Ranking (first ist best):</div>
-            <div id="keysRanked"></div>
-            <div class="result">Next keys:</div>
-            <div id="keysNext"></div>
-            <div id="keyboard" class="keyboard"></div>
-        </section>
-        <script src="keyboard.js"></script>
-        <script src="language.js"></script>
-        <script src="main.js"></script>
-    </body>
+  <head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700'
+    rel='stylesheet'>
+    <link rel="stylesheet" href="main.css">
+    <title>Blindwrite - Your way to 10 finger writing</title>
+  </head>
+  <body onload="init();">
+    <header>
+      <span class="keycap">B</span>
+      <span class="keycap">L</span>
+      <span class="keycap">I</span>
+      <span class="keycap">N</span>
+      <span class="keycap">D</span>
+      <span class="keycap">W</span>
+      <span class="keycap">R</span>
+      <span class="keycap">I</span>
+      <span class="keycap">T</span>
+      <span class="keycap">E</span>
+      <a class="github" href="https://github.com/Bubblepoint/blindwrite" target="_blank">show on github</a>
+    </header>
+    <section id="welcome" class="hide">
+      <h1>Welcome to blindwrite</h1>
+      <p>
+        blindwrite is a completly free website to learn 10 finger
+        writing.
+        <br>
+        blindwrite is in a early development state. Please report issues on
+        <a href="https://github.com/Bubblepoint/blindwrite">github</a>.
+        <br>
+        <br>
+        Important features:
+        <ul>
+          <li>completly free</li>
+          <li>no registration</li>
+          <li>open source</li>
+          <li>supports special keyboard design</li>
+          <li>supports special/own keyboard layouts</li>
+          <li>no personal data stored on the server</li>
+        </ul>
+        <button id="startSetup">Let's start</button>
+    </section>
+    <section id="setup" class ="hide">
+      <h1>Setup</h1>
+      <p>Just two steps till you can start with your training</p>
+      <p>
+        Step 1: Select your keyboard design:
+        <select id="selectKeyboard">
+        </select>
+      </p>
+      <div id="preview"></div>
+      <p id="language">
+        Step 2: Select your layout:
+        <select id="selectLayout" disabled>
+        </select>
+        <br>
+        or <button id="ownLayout" disabled>create your own layout (TODO)</button>
+      </p>
+      <button id="saveConfig" disabled>save</button>
+    </section>
+    <selection id="setupLanguage" class="hide">
+      <h1>Setup layout lanuage</h1>
+      <p>
+        Select your language:
+        <select id="selectLanguage">
+        </select>
+      </p>
+      <button id="startLayoutConfig">start layout config</button>
+    </selection>
+    <selection id="setupLayout" class="hide">
+      <h1>Setup layout</h1>
+      <p>Click the key for the following letter:</p>
+      <p id="setupLayoutKey">X</p>
+      <div id="setupLayoutKeyboard" class="keyboard"></div>
+    </selection>
+    <section id="exercise" class="hide">
+      <span id="txtDone"></span><span id="txtNow"></span><span id="txtNext"></span>
+      <br>
+      <div class="result">Ranking (first ist best):</div>
+      <div id="keysRanked"></div>
+      <div class="result">Next keys:</div>
+      <div id="keysNext"></div>
+      <div id="keyboard" class="keyboard"></div>
+    </section>
+    <script src="keyboard.js"></script>
+    <script src="language.js"></script>
+    <script src="main.js"></script>
+  </body>
 </html>
