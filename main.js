@@ -82,9 +82,9 @@ function exercise() {
                    "points": 0,
                    "count": 0
                });
-                orderdKeys.splice(0, 1);
-                localStorage.setItem("rankedKeys", JSON.stringify(rankedKeys));
-                localStorage.setItem("orderdKeys", JSON.stringify(orderdKeys));
+               orderdKeys.splice(0, 1);
+               localStorage.setItem("rankedKeys", JSON.stringify(rankedKeys));
+               localStorage.setItem("orderdKeys", JSON.stringify(orderdKeys));
            }
 
         keyLogging = {};
