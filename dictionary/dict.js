@@ -19949,7 +19949,8 @@ function generateList(lang, keys, len) {
         if (word.indexOf(important) === -1) {
             return;
         };
-        for (var i = 0; i < word.length-1; i++) {
+
+        for (var i = 0; i < word.length; i++) {
             if (keys.indexOf(word[i].toLowerCase()) === -1) {
                 return;
             };
