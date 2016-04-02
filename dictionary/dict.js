@@ -19946,12 +19946,14 @@ function generateList(lang, keys, len) {
     };
 
     dict[lang].forEach(function(word, _) {
-        if (word.indexOf(important) === -1) {
+        var lowWord = word.toLowerCase();
+
+        if (lowWord.indexOf(important) === -1) {
             return;
         };
 
         for (var i = 0; i < word.length; i++) {
-            if (keys.indexOf(word[i].toLowerCase()) === -1) {
+            if (keys.indexOf(lowWord[i]) === -1) {
                 return;
             };
         };
