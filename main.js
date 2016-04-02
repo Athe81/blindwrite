@@ -75,30 +75,26 @@ function exercise() {
     }
 
     function newLesson() {
+        keyLogging = {};
+        pos = 0;
+
         var space = 4 + Math.floor(Math.random() * 4);
         if (rankedKeys[rankedKeys.length-1].points > 1500) {
-               rankedKeys.push({
-                   "key": orderdKeys[0],
-                   "points": 0,
-                   "count": 0
-               });
-               orderdKeys.splice(0, 1);
-               localStorage.setItem("rankedKeys", JSON.stringify(rankedKeys));
-               localStorage.setItem("orderdKeys", JSON.stringify(orderdKeys));
-           }
-
-        keyLogging = {};
-        lessonString = "";
-        pos = 0;
-        for (var i = 0; i < TXT_LENGTH; i++) {
-            if (i === space && i < TXT_LENGTH-2) {
-                lessonString += " ";
-                space += 4 + Math.floor(Math.random() * 4);
-                continue;
-            }
-            var keyPos = Math.floor(Math.random() * rankedKeys.length);
-            lessonString += rankedKeys[keyPos].key;
+            rankedKeys.push({
+               "key": orderdKeys[0],
+               "points": 0,
+               "count": 0
+            });
+            orderdKeys.splice(0, 1);
+            localStorage.setItem("rankedKeys", JSON.stringify(rankedKeys));
+            localStorage.setItem("orderdKeys", JSON.stringify(orderdKeys));
         }
+
+        var keys = [];
+        rankedKeys.forEach(function(element) {
+            keys.push(element.key);
+        });
+        lessonString = generateList("de_DE", keys, TXT_LENGTH);
         updateView();
         hint.set(keyboard.getDOM(lessonString[pos]));
     }
