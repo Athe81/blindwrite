@@ -1,4 +1,4 @@
-function generateList(lang, keys) {
+function generateList(lang, keys, len) {
     var dict = {
         "de_DE": [
             'der',
@@ -19931,7 +19931,9 @@ function generateList(lang, keys) {
         ]
     };
 
-    var t = new Date().getTime();
+    var words = [];
+    var important = keys[keys.length-1];
+    var result = [];
 
     if (typeof(dict[lang]) === "undefined") {
         console.log('language', lang, 'does not exist');
@@ -19942,9 +19944,6 @@ function generateList(lang, keys) {
         console.log('key list is empty');
         return;
     };
-
-    var words = [];
-    var important = keys[keys.length-1];
 
     dict[lang].forEach(function(word, _) {
         if (word.indexOf(important) === -1) {
@@ -19958,35 +19957,53 @@ function generateList(lang, keys) {
         words.push(word);
     });
 
-    function rndLetter(len) {
+    function rndLetter(maxLen) {
         var letters = [];
+        var len = 0;
+
+        if (maxLen <= 7) {
+            len = maxLen;
+        } else {
+            len = 3 + (Math.random() * 3);
+        };
+
         for (var i = 0; i < len; i++) {
             letters.push(keys[Math.floor(Math.random() * keys.length)]);
         };
+
         return letters.join("");
     };
 
     function rndWord(maxLen) {
-        function notToLong(value) {
+        var word = '';
+
+        function lenFilter(value) {
             return value.length <= maxLen;
         };
-        return words.filter(function(value) {
-            return value.length <= maxLen;
-        })[Math.floor(Math.random() * words.length)];
+
+        word = words.filter(lenFilter)[Math.floor(Math.random() * words.length)];
+
+        if (typeof(word) === "undefined") {
+            word = rndLetter(maxLen);
+        };
+
+        return word;
     };
 
-    var len = 40;
+    while (len > 0) {
+        if (words.length < 20) {
+            var switcher = (30 - words.length) / 30;
 
-    if (words.length < 20) {
-        console.log("create mixed list");
-        console.log(rndLetter(6));
-        console.log(rndWord(2));
-    } else {
-        console.log("create pure list");
-        console.log(rndLetter(6));
-        console.log(rndWord(20));
+            if (Math.random() < switcher) {
+                result.push(rndLetter(len));
+            } else {
+                result.push(rndWord(len));
+            };
+        } else {
+            result.push(rndWord(len));
+        };
+        len -= (result[result.length - 1].length + 1);
     };
-    console.log("time:", new Date().getTime() -t);
 
-    return words.join(" ");
+    return result.join(" ");
 }
