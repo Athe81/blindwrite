@@ -163,6 +163,7 @@ var keyboard = function(){
         var layout = keyboards[localStorage.keyboard].layout[localStorage.layout].mapping;
         for (var l in layout) {
             keyDOMs[l] = document.getElementById(layout[l]);
+            document.getElementById(layout[l] + 'K').innerHTML = l.toUpperCase();
         }
     }
 
@@ -247,18 +248,19 @@ function setup() {
 
     function createOrder() {
         var orderdKeys = [];
+        var rankedKeys = [];
         var layout = keyboards[localStorage.keyboard].layout[localStorage.layout];
         var order = keyboards[localStorage.keyboard].ordering;
+
         for (var o = 0; o < order.length; o++) {
             for (var l in layout.mapping) {
                 if (layout.mapping[l] === order[o] &&
                     languages[layout.language].indexOf(l) !== -1
-                   ) {
-                       orderdKeys.push(l);
-                   }
+                ) {
+                    orderdKeys.push(l);
+                }
             }
         }
-        var rankedKeys = [];
         for (var i = 0; i < 4; i++) {
             rankedKeys.push({
                 "key": orderdKeys[0],

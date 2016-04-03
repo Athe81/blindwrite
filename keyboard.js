@@ -86,6 +86,84 @@ var keyboards = {
             '<path id="path4298" d="m205.58 119.83 15.87-0.0838" stroke-width="1px" fill="none"/>' +
             '<path id="path4298-0" d="m603.51 119.09 15.87-0.0838" stroke-width="1px" fill="none"/>' +
             '</g>' +
+            '<g font-size="20px" font-family="Ubuntu Mono" fill="#000000">' +
+            '<text id="L00K" y="45.168068" x="47.35321"></text>' +
+            '<text id="L01K" y="81.168037" x="47.35321"></text>' +
+            '<text id="L02K" y="117.16804" x="47.35321"></text>' +
+            '<text id="L03K" y="153.17004" x="47.35321"></text>' +
+            '<text id="L04K" y="189.17004" x="62.35321"></text>' +
+            '<text id="L10K" y="45.168037" x="98.35321"></text>' +
+            '<text id="L11K" y="81.168037" x="98.35321"></text>' +
+            '<text id="L12K" y="117.16804" x="98.35321"></text>' +
+            '<text id="L13K" y="153.17004" x="98.35321"></text>' +
+            '<text id="L14K" y="189.17004" x="98.35321"></text>' +
+            '<text id="L20K" y="45.168037" x="134.3562"></text>' +
+            '<text id="L21K" y="81.168037" x="134.3562"></text>' +
+            '<text id="L22K" y="117.16804" x="134.3562"></text>' +
+            '<text id="L23K" y="153.17004" x="134.3562"></text>' +
+            '<text id="L24K" y="189.17004" x="134.3562"></text>' +
+            '<text id="L30K" y="45.168037" x="170.3562"></text>' +
+            '<text id="L31K" y="81.168037" x="170.3562"></text>' +
+            '<text id="L32K" y="117.16804" x="170.3562"></text>' +
+            '<text id="L33K" y="153.17004" x="170.3562"></text>' +
+            '<text id="L34K" y="189.17004" x="170.3562"></text>' +
+            '<text id="L40K" y="45.168037" x="206.3562"></text>' +
+            '<text id="L41K" y="81.168037" x="206.3562"></text>' +
+            '<text id="L42K" y="117.16804" x="206.3562"></text>' +
+            '<text id="L43K" y="153.17004" x="206.3562"></text>' +
+            '<text id="L44K" y="189.17004" x="206.3562"></text>' +
+            '<text id="L50K" y="45.168037" x="242.3562"></text>' +
+            '<text id="L51K" y="81.168037" x="242.3562"></text>' +
+            '<text id="L52K" y="117.16804" x="242.3562"></text>' +
+            '<text id="L53K" y="153.17004" x="242.3562"></text>' +
+            '<text id="L60K" y="45.168037" x="278.3562"></text>' +
+            '<text id="L61K" y="90.168037" x="278.3562"></text>' +
+            '<text id="L62K" y="144.17003" x="278.3562"></text>' +
+            '<text id="L63K" transform="rotate(20)" y="108.40289" x="318.6512"></text>' +
+            '<text id="L70K" transform="rotate(20)" y="55.481579" x="356.2187"></text>' +
+            '<text id="L71K" transform="rotate(20)" y="109.45824" x="354.6357"></text>' +
+            '<text id="L80K" transform="rotate(20)" y="56.536922" x="392.2031"></text>' +
+            '<text id="L81K" transform="rotate(20)" y="92.521378" x="391.1478"></text>' +
+            '<text id="L82K" transform="rotate(20)" y="128.50581" x="390.0924"></text>' +
+            '<text id="R80K" transform="rotate(-20)" y="338.4757" x="368.5603"></text>' +
+            '<text id="R81K" transform="rotate(-20)" y="374.4603" x="369.6160"></text>' +
+            '<text id="R82K" transform="rotate(-20)" y="410.4448" x="370.6717"></text>' +
+            '<text id="R70K" transform="rotate(-20)" y="337.4199" x="404.5448"></text>' +
+            '<text id="R71K" transform="rotate(-20)" y="391.3968" x="406.1284"></text>' +
+            '<text id="R63K" transform="rotate(-20)" y="390.3411" x="442.1130"></text>' +
+            '<text id="R60K" y="45.168037" x="532.3562"></text>' +
+            '<text id="R61K" y="90.168037" x="532.3562"></text>' +
+            '<text id="R62K" y="144.17003" x="532.3562"></text>' +
+            '<text id="R50K" y="45.168037" x="568.3562"></text>' +
+            '<text id="R51K" y="81.168037" x="568.3562"></text>' +
+            '<text id="R52K" y="117.16804" x="568.3562"></text>' +
+            '<text id="R53K" y="153.17004" x="568.3562"></text>' +
+            '<text id="R40K" y="45.168037" x="604.3562"></text>' +
+            '<text id="R41K" y="81.168037" x="604.3562"></text>' +
+            '<text id="R42K" y="117.16804" x="604.3562"></text>' +
+            '<text id="R43K" y="153.17004" x="604.3562"></text>' +
+            '<text id="R44K" y="189.17004" x="604.3562"></text>' +
+            '<text id="R30K" y="45.168037" x="640.3562"></text>' +
+            '<text id="R31K" y="81.168037" x="640.3562"></text>' +
+            '<text id="R32K" y="117.16804" x="640.3562"></text>' +
+            '<text id="R33K" y="153.17004" x="640.3562"></text>' +
+            '<text id="R34K" y="189.17004" x="640.3562"></text>' +
+            '<text id="R20K" y="45.168037" x="676.3562"></text>' +
+            '<text id="R21K" y="81.168037" x="676.3562"></text>' +
+            '<text id="R22K" y="117.16804" x="676.3562"></text>' +
+            '<text id="R23K" y="153.17004" x="676.3562"></text>' +
+            '<text id="R24K" y="189.17004" x="676.3562"></text>' +
+            '<text id="R10K" y="45.168037" x="712.3562"></text>' +
+            '<text id="R11K" y="81.168037" x="712.3562"></text>' +
+            '<text id="R12K" y="117.16804" x="712.3562"></text>' +
+            '<text id="R13K" y="153.17004" x="712.3562"></text>' +
+            '<text id="R14K" y="189.17004" x="712.3562"></text>' +
+            '<text id="R00K" y="45.168037" x="763.3562"></text>' +
+            '<text id="R01K" y="81.168037" x="763.3562"></text>' +
+            '<text id="R02K" y="117.16804" x="763.3562"></text>' +
+            '<text id="R03K" y="153.17004" x="763.3562"></text>' +
+            '<text id="R04K" y="189.17004" x="748.3562"></text>' +
+            '</g>' +
             '</svg>',
         "ordering": [
                 "R42",
@@ -172,9 +250,10 @@ var keyboards = {
                 "language": "en_US",
                 "mapping": {
                     " ": "L63",
-                    ",": "L14",
+                    ",": "R33",
                     "-": "R00",
-                    ".": "R33",
+                    ".": "R23",
+                    "'": "L14",
                     "0": "R10",
                     "1": "L10",
                     "2": "L20",
