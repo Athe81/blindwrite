@@ -1,10 +1,10 @@
 var keyboards = {
     "ergodox": {
         "svg":
-            '<svg id="keyboardSVG" height="81.684mm" viewBox="0 0 825.51069 289.4326" width="232.98mm" version="1.1">' +
+            '<svg height="81.684mm" viewBox="0 0 825.51069 289.4326" width="232.98mm" version="1.1">' +
             '<g stroke="#000000">' +
-            '<g id="layer1" stroke-linejoin="round" fill-opacity="0" transform="translate(-38.513 -34.122)" stroke-width="2">' +
-            '<path id="Lkeyboard" style="image-rendering:auto" d="m76.6 42.209c-16.62 0-30 13.38-30 30v140c0 16.62 13.38 30 30 30h113.09l178.89 71.119c15.444 6.1399 32.821-1.3506 38.961-16.795l26.254-66.043c6.1398-15.444-1.3506-32.821-16.795-38.961l-57.188-22.734v-96.586c0-16.62-13.38-30-30-30h-253.21z"/>' +
+            '<g stroke-linejoin="round" fill-opacity="0" transform="translate(-38.513 -34.122)" stroke-width="2">' +
+            '<path style="image-rendering:auto" d="m76.6 42.209c-16.62 0-30 13.38-30 30v140c0 16.62 13.38 30 30 30h113.09l178.89 71.119c15.444 6.1399 32.821-1.3506 38.961-16.795l26.254-66.043c6.1398-15.444-1.3506-32.821-16.795-38.961l-57.188-22.734v-96.586c0-16.62-13.38-30-30-30h-253.21z"/>' +
             '<rect id="L00" rx="5" ry="5" height="30" width="60" y="57" x="63" onclick="configKeys.setKey(\'L00\')"/>' +
             '<rect id="L01" rx="5" ry="5" height="30" width="60" y="93" x="63" onclick="configKeys.setKey(\'L01\')"/>' +
             '<rect id="L02" rx="5" ry="5" height="30" width="60" y="129" x="63" onclick="configKeys.setKey(\'L02\')"/>' +
@@ -43,7 +43,7 @@ var keyboards = {
             '<rect id="L80" transform="rotate(21.68)" rx="5" ry="5" height="30" width="30" y="40" x="434" onclick="configKeys.setKey(\'L80\')"/>' +
             '<rect id="L81" transform="rotate(21.68)" rx="5" ry="5" height="30" width="30" y="76" x="434" onclick="configKeys.setKey(\'L81\')"/>' +
             '<rect id="L82" transform="rotate(21.68)" rx="5" ry="5" height="30" width="30" y="112" x="434" onclick="configKeys.setKey(\'L82\')"/>' +
-            '<path id="Rkeyboard" style="image-rendering:auto" d="m825.94 42.209c16.62 0 30 13.38 30 30v140c0 16.62-13.38 30-30 30h-113.09l-178.89 71.119c-15.444 6.1399-32.821-1.3506-38.961-16.795l-26.254-66.043c-6.1398-15.444 1.3506-32.821 16.795-38.961l57.188-22.734v-96.586c0-16.62 13.38-30 30-30h253.21z"/>' +
+            '<path style="image-rendering:auto" d="m825.94 42.209c16.62 0 30 13.38 30 30v140c0 16.62-13.38 30-30 30h-113.09l-178.89 71.119c-15.444 6.1399-32.821-1.3506-38.961-16.795l-26.254-66.043c-6.1398-15.444 1.3506-32.821 16.795-38.961l57.188-22.734v-96.586c0-16.62 13.38-30 30-30h253.21z"/>' +
             '<rect id="R60" rx="5" ry="5" height="30" width="30" y="57" x="563" onclick="configKeys.setKey(\'R60\')"/>' +
             '<rect id="R61" rx="5" ry="5" height="48" width="30" y="93" x="563" onclick="configKeys.setKey(\'R61\')"/>' +
             '<rect id="R62" rx="5" ry="5" height="48" width="30" y="147" x="563" onclick="configKeys.setKey(\'R62\')"/>' +
@@ -83,8 +83,8 @@ var keyboards = {
             '<rect id="R71" ry="5" rx="5" transform="matrix(-.92926 .36943 .36943 .92926 0 0)" height="66" width="30" y="409" x="-440" onclick="configKeys.setKey(\'R71\')"/>' +
             '<rect id="R63" ry="5" rx="5" transform="matrix(-.92926 .36943 .36943 .92926 0 0)" height="66" width="30" y="409" x="-476" onclick="configKeys.setKey(\'R63\')"/>' +
             '</g>' +
-            '<path id="path4298" d="m205.58 119.83 15.87-0.0838" stroke-width="1px" fill="none"/>' +
-            '<path id="path4298-0" d="m603.51 119.09 15.87-0.0838" stroke-width="1px" fill="none"/>' +
+            '<path d="m205.58 119.83 15.87-0.0838" stroke-width="1px" fill="none"/>' +
+            '<path d="m603.51 119.09 15.87-0.0838" stroke-width="1px" fill="none"/>' +
             '</g>' +
             '<g font-size="20px" font-family="Ubuntu Mono" fill="#000000">' +
             '<text id="L00K" y="45.168068" x="47.35321"></text>' +
