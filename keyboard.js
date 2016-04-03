@@ -1,7 +1,7 @@
 var keyboards = {
     "ergodox": {
         "svg":
-            '<svg height="81.684mm" viewBox="0 0 825.51069 289.4326" width="232.98mm" version="1.1">' +
+            '<svg id="keyboardSVG" height="81.684mm" viewBox="0 0 825.51069 289.4326" width="232.98mm" version="1.1">' +
             '<g stroke="#000000">' +
             '<g stroke-linejoin="round" fill-opacity="0" transform="translate(-38.513 -34.122)" stroke-width="2">' +
             '<path style="image-rendering:auto" d="m76.6 42.209c-16.62 0-30 13.38-30 30v140c0 16.62 13.38 30 30 30h113.09l178.89 71.119c15.444 6.1399 32.821-1.3506 38.961-16.795l26.254-66.043c6.1398-15.444-1.3506-32.821-16.795-38.961l-57.188-22.734v-96.586c0-16.62-13.38-30-30-30h-253.21z"/>' +
