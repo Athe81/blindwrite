@@ -204,6 +204,7 @@ function setup() {
     };
 
     ownLayout.onclick = function() {
+        preview.innerHTML = "";
         setup.classList.add("hide");
         for (var l in languages) {
             var option = document.createElement("option");
@@ -215,11 +216,7 @@ function setup() {
 
     startLayoutConfig.onclick = function() {
         setupLanguage.classList.add("hide");
-        document.getElementById("setupLayoutKeyboard").innerHTML =
-            keyboards[selectKeyboard.value].svg;
-        setupLayout.classList.remove("hide");
-        localStorage.keyboard = selectKeyboard.value;
-        configKeys.setLanguage(languages[selectLanguage.value]);
+        setupOwnLayout(selectKeyboard.value, selectLanguage.value);
     };
 
     function updateKeyboards() {
@@ -230,9 +227,6 @@ function setup() {
             selectKeyboard.add(option);
         }
         selectKeyboard.selectedIndex = -1;
-    }
-
-    function showKeyboardPreview(keyboardType) {
     }
 
     function updateLayout(keyboardType) {
@@ -306,39 +300,66 @@ function showWelcome() {
     };
 }
 
-var configKeys = function() {
-    var lang;
-    var pos = 0;
+function setupOwnLayout(keyboard, language) {
+    var activeId;
+    var letters;
     var mapping = {};
-    var setupLayoutKey = document.getElementById("setupLayoutKey");
 
-    function update() {
-        if (pos < lang.length) {
-            setupLayoutKey.innerHTML = lang[pos];
-            pos++;
-        } else {
-            console.log("finished");
-        }
-    }
+    function setKey(event) {
+        var key = String.fromCharCode(event.which);
 
-    function setLanguage(l) {
-        lang = l;
-        update();
-    }
-
-    function setKey(id) {
-        if (typeof(lang) === "undefined") {
+        if (typeof(activeId) === "undefined") {
             return;
         };
-        mapping[lang[pos - 1]] = id;
-        update();
+        document.getElementById(activeId + 'K').innerHTML = key;
+        mapping[key.toLowerCase()] = activeId;
+        updateView();
     }
 
-    return {
-        setLanguage: setLanguage,
-        setKey: setKey
+    function updateView() {
+        var undefKeys = [];
+
+        for (var k in mapping) {
+            if (typeof(mapping[k]) === "undefined") {
+                undefKeys.push('<span class="keycapMini">');
+                undefKeys.push(k);
+                undefKeys.push('</span>');
+            };
+        };
+        document.getElementById("letters").innerHTML = undefKeys.join("");
     }
-}();
+
+    function save() {
+        document.removeEventListener("keydown", setKey);
+        keyboards[keyboard].ordering.forEach(function(element) {
+            document.getElementById(element).onclick=function(){};
+            document.getElementById("setupLayoutSave").removeEventListener("click", save);
+        });
+    }
+
+    letters = languages[language];
+    letters.forEach(function(letter) {
+        mapping[letter] = undefined;
+    });
+
+    document.getElementById("setupLayout").classList.remove("hide");
+    document.getElementById("setupLayoutKeyboard").innerHTML =
+        keyboards[keyboard].svg;
+    keyboards[keyboard].ordering.forEach(function(element) {
+        document.getElementById(element).onclick=function(){
+            if (typeof(activeId) !== "undefined") {
+                document.getElementById(activeId).classList.remove("hint");
+            };
+            activeId = element;
+            document.getElementById(activeId).classList.add("hint");
+        };
+    });
+
+    document.getElementById("setupLayoutSave").addEventListener("click", save);
+    document.addEventListener("keydown", setKey);
+
+    updateView();
+};
 
 function init() {
     //window.localStorage.clear();
