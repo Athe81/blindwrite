@@ -304,15 +304,27 @@ function setupOwnLayout(keyboard, language) {
     var activeId;
     var letters;
     var mapping = {};
+    var defaultLetters = [".", ",", "'"];
 
     function setKey(event) {
-        var key = String.fromCharCode(event.which);
+        var key = String.fromCharCode(event.which).toLowerCase();
 
-        if (typeof(activeId) === "undefined") {
+        if (activeId === undefined) {
             return;
         };
-        document.getElementById(activeId + 'K').innerHTML = key;
-        mapping[key.toLowerCase()] = activeId;
+        if (mapping.hasOwnProperty(key) === false) {
+            return;
+        };
+        if (mapping[key] !== undefined) {
+            document.getElementById(mapping[key] + 'K').innerHTML = "";
+        };
+        for (var k in mapping) {
+            if (mapping[k] === activeId) {
+                mapping[k] = undefined;
+            };
+        }
+        document.getElementById(activeId + 'K').innerHTML = key.toUpperCase();
+        mapping[key] = activeId;
         updateView();
     }
 
@@ -320,7 +332,7 @@ function setupOwnLayout(keyboard, language) {
         var undefKeys = [];
 
         for (var k in mapping) {
-            if (typeof(mapping[k]) === "undefined") {
+            if (mapping[k] === undefined) {
                 undefKeys.push('<span class="keycapMini">');
                 undefKeys.push(k);
                 undefKeys.push('</span>');
@@ -338,6 +350,7 @@ function setupOwnLayout(keyboard, language) {
     }
 
     letters = languages[language];
+    letters = letters.concat(defaultLetters);
     letters.forEach(function(letter) {
         mapping[letter] = undefined;
     });
@@ -347,7 +360,7 @@ function setupOwnLayout(keyboard, language) {
         keyboards[keyboard].svg;
     keyboards[keyboard].ordering.forEach(function(element) {
         document.getElementById(element).onclick=function(){
-            if (typeof(activeId) !== "undefined") {
+            if (activeId !== undefined) {
                 document.getElementById(activeId).classList.remove("hint");
             };
             activeId = element;
