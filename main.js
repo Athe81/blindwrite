@@ -324,6 +324,7 @@ function setupOwnLayout(keyboard, language) {
         document.getElementById(activeId + 'K').innerHTML = key.toUpperCase();
         mapping[key] = activeId;
         updateView();
+        event.preventDefault();
     }
 
     function updateView() {
@@ -340,7 +341,7 @@ function setupOwnLayout(keyboard, language) {
     }
 
     function save() {
-        document.removeEventListener("keydown", setKey);
+        document.removeEventListener("keypress", setKey);
         keyboards[keyboard].ordering.forEach(function(element) {
             document.getElementById(element).onclick=function(){};
             document.getElementById("setupLayoutSave").removeEventListener("click", save);
@@ -368,7 +369,7 @@ function setupOwnLayout(keyboard, language) {
     });
 
     document.getElementById("setupLayoutSave").addEventListener("click", save);
-    document.addEventListener("keydown", setKey);
+    document.addEventListener("keypress", setKey);
 
     updateView();
 };
