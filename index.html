@@ -21,17 +21,31 @@
       <span class="keycap">E</span>
       <a class="github" href="https://github.com/Bubblepoint/blindwrite" target="_blank">show on github</a>
     </header>
-    <section id="welcome" class="hide">
-      <h1>Welcome to blindwrite</h1>
-      <p>
-        blindwrite is a completly free website to learn 10 finger
-        writing.
-        <br>
-        blindwrite is in a early development state. Please report issues on
-        <a href="https://github.com/Bubblepoint/blindwrite">github</a>.
-        <br>
-        <br>
-        Important features:
+    <section id="exercise">
+      <span id="txtDone"></span><span id="txtNow"></span><span id="txtNext"></span>
+      <br>
+      <div class="result">Ranking (first ist best):</div>
+      <div id="keysRanked"></div>
+      <div class="result">Next keys:</div>
+      <div id="keysNext"></div>
+      <div class="footer">
+        <div id="keyboard" class="keyboard"></div>
+      </div>
+    </section>
+    <div id="welcome" class="modal">
+      <div class="modal-content">
+        <!--<span class="close">x</span>-->
+        <h1>Welcome to blindwrite</h1>
+        <p>
+          blindwrite is a completly free website to learn 10 finger
+          writing.
+          <br>
+          blindwrite is in a early development state. Please report issues on
+          <a href="https://github.com/Bubblepoint/blindwrite">github</a>.
+          <br>
+          <br>
+          Important features:
+        </p>
         <ul>
           <li>completly free</li>
           <li>no registration</li>
@@ -41,56 +55,57 @@
           <li>no personal data stored on the server</li>
         </ul>
         <button id="startSetup">Let's start</button>
-    </section>
-    <section id="setup" class ="hide">
-      <h1>Setup</h1>
-      <p>Just two steps till you can start with your training</p>
-      <p>
-        Step 1: Select your keyboard design:
-        <select id="selectKeyboard">
-        </select>
-      </p>
-      <div id="preview"></div>
-      <p id="language">
-        Step 2: Select your layout:
-        <select id="selectLayout" disabled>
-        </select>
-        <br>
-        or <button id="ownLayout" disabled>create your own layout (TODO)</button>
-      </p>
-      <button id="saveConfig" disabled>save</button>
-    </section>
-    <selection id="setupLanguage" class="hide">
-      <h1>Setup layout lanuage</h1>
-      <p>
-        Select your language:
-        <select id="selectLanguage">
-        </select>
-      </p>
-      <button id="startLayoutConfig">start layout config</button>
-    </selection>
-    <selection id="setupLayout" class="hide">
-      <h1>Setup layout</h1>
-      <p>How to:</p>
-      <ol>
-        <li>Click on the key you like to set</li>
-        <li>Press the letter for the selected key</li>
-        <li>Redo, till all letters are set</li>
-      </ol>
-      <p>Letters to set:</p>
-      <p id="letters"></p>
-      <button id="setupLayoutSave">save</button>
-      <div id="setupLayoutKeyboard" class="keyboard"></div>
-    </selection>
-    <section id="exercise" class="hide">
-      <span id="txtDone"></span><span id="txtNow"></span><span id="txtNext"></span>
-      <br>
-      <div class="result">Ranking (first ist best):</div>
-      <div id="keysRanked"></div>
-      <div class="result">Next keys:</div>
-      <div id="keysNext"></div>
-      <div id="keyboard" class="keyboard"></div>
-    </section>
+      </div>
+    </div>
+    <div id="setup" class="modal">
+      <div class="modal-content">
+        <!--<span class="close">x</span>-->
+        <h1>Setup</h1>
+        <p>Just two steps till you can start with your training</p>
+        <p>
+          Step 1: Select your keyboard design:
+          <select id="selectKeyboard">
+          </select>
+        </p>
+        <div id="preview"></div>
+        <p id="language">
+          Step 2: Select your layout:
+          <select id="selectLayout" disabled>
+          </select>
+          <br>
+          or <button id="ownLayout" disabled>create your own layout (TODO)</button>
+        </p>
+        <button id="saveConfig" disabled>save</button>
+      </div>
+    </div>
+    <div id="setupLanguage" class="modal">
+      <div class="modal-content">
+        <!--<span class="close">x</span>-->
+        <h1>Setup layout lanuage</h1>
+        <p>
+          Select your language:
+          <select id="selectLanguage">
+          </select>
+        </p>
+        <button id="startLayoutConfig">start layout config</button>
+      </div>
+    </div>
+    <div id="setupLayout" class="modal">
+      <div class="modal-content">
+        <!--<span class="close">x</span>-->
+        <h1>Setup layout</h1>
+        <p>How to:</p>
+        <ol>
+          <li>Click on the key you like to set</li>
+          <li>Press the letter for the selected key</li>
+          <li>Redo, till all letters are set</li>
+        </ol>
+        <p>Letters to set:</p>
+        <p id="letters"></p>
+        <button id="setupLayoutSave">save</button>
+        <div id="setupLayoutKeyboard" class="keyboard"></div>
+      </div>
+    </div>
     <script src="keyboard.js"></script>
     <script src="language.js"></script>
     <script src="dictionary/dict.js"></script>
