@@ -395,6 +395,9 @@ function setupOwnLayout(keyboard, language) {
             };
         }
         document.getElementById(activeId + 'K').innerHTML = key.toUpperCase();
+        if (key == 'ß') {
+            document.getElementById(activeId + 'K').innerHTML = key.toLowerCase();
+        };
         mapping[key] = activeId;
         updateView();
         event.preventDefault();
