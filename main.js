@@ -27,21 +27,114 @@ var hint = function() {
     };
 }();
 
+var config = function() {
+    var c = {
+        active: undefined,
+        data: {}
+    };
+
+    function storedConfigs() {
+        var result = [];
+        for (var d in c.data) {
+            result.push(d);
+        };
+        return result;
+    }
+
+    function setActiveConfig(configName) {
+        if (c.data[configName] === undefined) {
+            console.log("Error: Unknown config name: " + configName);
+            return false;
+        };
+        c.active = configName;
+        return true;
+    }
+
+    function addConfig(keyboard, language, layout) {
+        var orderdKeys = [];
+        var rankedKeys = [];
+        var name = keyboard + "_" + layout + " (" + language + ")";
+        var keyConfig = keyboards[keyboard].layout[language][layout];
+        var order = keyboards[keyboard].ordering;
+
+        for (var o in order) {
+            for (var l in keyConfig) {
+                if (keyConfig[l] === order[o] &&
+                    languages[language].indexOf(l) !== -1
+                ) {
+                    orderdKeys.push(l);
+                }
+            }
+        }
+
+        for (var i = 0; i < 4; i++) {
+            rankedKeys.push({
+                "key": orderdKeys[0],
+                "points": 0,
+                "count": 0
+            });
+            orderdKeys.splice(0, 1);
+        }
+
+        c.active = name;
+        c.data[name] = {
+            keyboard: keyboard,
+            language: language,
+            layout: layout,
+            rankedKeys: rankedKeys,
+            orderdKeys: orderdKeys
+        };
+        save();
+    }
+
+    function updateKeys(rankedKeys, orderdKeys) {
+        c.data[c.active].rankedKeys = rankedKeys;
+        c.data[c.active].orderdKeys = orderdKeys;
+        save();
+    }
+
+    function get(key) {
+        return c.data[c.active][key];
+    }
+
+    function save() {
+        localStorage.setItem("configs", JSON.stringify(c));
+    }
+
+    function isNew() {
+        if (c.active === undefined) {
+            return true;
+        };
+        return false;
+    }
+
+    if (window.localStorage.configs !== undefined) {
+        c = JSON.parse(window.localStorage.configs);
+    };
+
+    return {
+        isNew: isNew,
+        addConfig: addConfig,
+        updateKeys: updateKeys,
+        get: get,
+        save: save,
+    }
+}();
+
 function exercise() {
     var lessonString;
     var pos;
     var error;
     var timeStamp;
     var keyLogging = {};
-    var rankedKeys = JSON.parse(localStorage.getItem("rankedKeys"));
-    var orderdKeys = JSON.parse(localStorage.getItem("orderdKeys"));
+    var rankedKeys = config.get("rankedKeys");
+    var orderdKeys = config.get("orderdKeys");
 
     var txtDone = document.getElementById('txtDone');
     var txtNow = document.getElementById('txtNow');
     var txtNext = document.getElementById('txtNext');
 
-    document.getElementById("exercise").classList.remove("hide");
-    keyboard.setKeyboard(localStorage.keyboard);
+    keyboard.setKeyboard(config.get("keyboard"));
     newLesson();
 
     window.onkeypress = function(event){
@@ -75,6 +168,8 @@ function exercise() {
     }
 
     function newLesson() {
+        var keys = [];
+
         keyLogging = {};
         pos = 0;
 
@@ -86,15 +181,14 @@ function exercise() {
                "count": 0
             });
             orderdKeys.splice(0, 1);
-            localStorage.setItem("rankedKeys", JSON.stringify(rankedKeys));
-            localStorage.setItem("orderdKeys", JSON.stringify(orderdKeys));
-        }
+            config.updateKeys(rankedKeys, orderdKeys);
+        };
 
-        var keys = [];
         rankedKeys.forEach(function(element) {
             keys.push(element.key);
         });
-        lessonString = generateList("de_DE", keys, TXT_LENGTH);
+
+        lessonString = generateList("de_DE", keys, TXT_LENGTH); /*TODO:  */
         updateView();
         hint.set(keyboard.getDOM(lessonString[pos]));
     }
@@ -150,7 +244,7 @@ function exercise() {
         rankedKeys.sort(function(a, b){
             return b.points - a.points;
         });
-        localStorage.setItem("rankedKeys", JSON.stringify(rankedKeys));
+        config.updateKeys(rankedKeys, orderdKeys);
     }
 }
 
@@ -159,8 +253,10 @@ var keyboard = function(){
 
     function setKeyboard(){
         document.getElementById("keyboard").innerHTML =
-            keyboards[localStorage.keyboard].svg;
-        var layout = keyboards[localStorage.keyboard].layout[localStorage.layout].mapping;
+            keyboards[config.get("keyboard")].svg;
+        var layout = keyboards[config.get("keyboard")]
+            .layout[config.get("language")]
+            [config.get("layout")];
         for (var l in layout) {
             keyDOMs[l] = document.getElementById(layout[l]);
             document.getElementById(layout[l] + 'K').innerHTML = l.toUpperCase();
@@ -181,7 +277,7 @@ function setupLanguage() {
     var setupLanguage = document.getElementById("setupLanguage");
     var selectLanguage = document.getElementById("selectLanguage");
     var startLayoutConfig = document.getElementById("startLayoutConfig");
-    
+
     setupLanguage.style.display = "block";
     for (var l in languages) {
         var option = document.createElement("option");
@@ -224,6 +320,10 @@ function setup() {
         setupLanguage();
     };
 
+    saveConfig.onclick = function() {
+        save();
+    };
+
     function updateKeyboards() {
         selectKeyboard.innerHTML = "";
         for (var k in keyboards) {
@@ -236,54 +336,27 @@ function setup() {
 
     function updateLayout(keyboardType) {
         selectLayout.innerHTML = "";
-        for (var l in keyboards[keyboardType].layout) {
-            var option = document.createElement("option");
-            option.text = l;
-            selectLayout.add(option);
-        }
+        for (var language in keyboards[keyboardType].layout) {
+            for (var layout in keyboards[keyboardType].layout[language]) {
+                var option = document.createElement("option");
+                option.text = layout + " (" + language + ")";
+                option.value = JSON.stringify({layout, language});
+                selectLayout.add(option);
+            };
+        };
         selectLayout.selectedIndex = -1;
         selectLayout.disabled = true;
     }
 
-    function createOrder() {
-        var orderdKeys = [];
-        var rankedKeys = [];
-        var layout = keyboards[localStorage.keyboard].layout[localStorage.layout];
-        var order = keyboards[localStorage.keyboard].ordering;
-
-        for (var o = 0; o < order.length; o++) {
-            for (var l in layout.mapping) {
-                if (layout.mapping[l] === order[o] &&
-                    languages[layout.language].indexOf(l) !== -1
-                ) {
-                    orderdKeys.push(l);
-                }
-            }
-        }
-        for (var i = 0; i < 4; i++) {
-            rankedKeys.push({
-                "key": orderdKeys[0],
-                "points": 0,
-                "count": 0
-            });
-            orderdKeys.splice(0, 1);
-        }
-        localStorage.setItem("rankedKeys", JSON.stringify(rankedKeys));
-        localStorage.setItem("orderdKeys", JSON.stringify(orderdKeys));
-    }
-
     function save() {
-        localStorage.keyboard = selectKeyboard.value;
-        localStorage.layout = selectLayout.value;
-        createOrder();
+        var layout = JSON.parse(selectLayout.value);
+        config.addConfig(selectKeyboard.value,
+                         layout.language,
+                         layout.layout);
         preview.innerHTML = "";
         setup.style.display = "none";
         exercise();
     }
-
-    saveConfig.onclick = function() {
-        save();
-    };
 }
 
 function showWelcome() {
@@ -338,6 +411,12 @@ function setupOwnLayout(keyboard, language) {
             };
         };
         document.getElementById("letters").innerHTML = undefKeys.join("");
+        for (var k in mapping) {
+            if (mapping[k] === undefined) {
+                return;
+            };
+        };
+
     }
 
     function save() {
@@ -384,12 +463,7 @@ function init() {
         }
     });
 
-    if (
-        typeof(localStorage.keyboard) === "undefined" ||
-        typeof(localStorage.layout) === "undefined" ||
-        typeof(localStorage.orderdKeys) === "undefined" ||
-        typeof(localStorage.rankedKeys) === "undefined"
-    ) {
+    if (config.isNew() === true) {
         showWelcome();
     } else {
         exercise();

@@ -246,9 +246,8 @@ var keyboards = {
                 "L82"
             ],
         "layout": {
-            "ergodox-ez default (en_US)": {
-                "language": "en_US",
-                "mapping": {
+            "en_US": {
+                "QWERTY": {
                     " ": "L63",
                     ",": "R33",
                     "-": "R00",

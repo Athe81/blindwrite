@@ -61,21 +61,30 @@
       <div class="modal-content">
         <!--<span class="close">x</span>-->
         <h1>Setup</h1>
-        <p>Just two steps till you can start with your training</p>
+        <p>Just a few steps till you can start with your training</p>
         <p>
           Step 1: Select your keyboard design:
-          <select id="selectKeyboard">
+        </p>
+        <p>
+          <select id="selectKeyboard"i style="float=left;">
           </select>
         </p>
-        <div id="preview"></div>
-        <p id="language">
+        <p>
+          <div id="preview"></div>
+        </p>
+        <p>
           Step 2: Select your layout:
+        </p>
+        <p>
           <select id="selectLayout" disabled>
           </select>
-          <br>
+        <!--</p>-->
+        <!--<p>-->
           or <button id="ownLayout" disabled>create your own layout (TODO)</button>
         </p>
-        <button id="saveConfig" disabled>save</button>
+        <p>
+          <button id="saveConfig" disabled>save</button>
+        </p>
       </div>
     </div>
     <div id="setupLanguage" class="modal">
@@ -102,8 +111,8 @@
         </ol>
         <p>Letters to set:</p>
         <p id="letters"></p>
-        <button id="setupLayoutSave">save</button>
         <div id="setupLayoutKeyboard" class="keyboard"></div>
+        <button id="setupLayoutSave">save</button>
       </div>
     </div>
     <script src="keyboard.js"></script>
