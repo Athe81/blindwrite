@@ -190,7 +190,7 @@ function exercise() {
 
         lessonString = generateList("de_DE", keys, TXT_LENGTH); /*TODO:  */
         updateView();
-        hint.set(keyboard.getDOM(lessonString[pos]));
+        hint.set(keyboard.getDOM(lessonString[pos].toLowerCase()));
     }
 
     function checkInput(event) {
@@ -260,6 +260,9 @@ var keyboard = function(){
         for (var l in layout) {
             keyDOMs[l] = document.getElementById(layout[l]);
             document.getElementById(layout[l] + 'K').innerHTML = l.toUpperCase();
+            if (l == 'ß') {
+                document.getElementById(layout[l] + 'K').innerHTML = l.toLowerCase();
+            };
         }
     }
 
