@@ -425,7 +425,7 @@ function setupOwnLayout(keyboard, language) {
     function save() {
         document.removeEventListener("keypress", setKey);
         keyboards[keyboard].ordering.forEach(function(element) {
-            document.getElementById(element).onclick=function(){};
+            document.getElementById(element).onclick = function(){};
             document.getElementById("setupLayoutSave").removeEventListener("click", save);
         });
     }
@@ -441,7 +441,7 @@ function setupOwnLayout(keyboard, language) {
     document.getElementById("setupLayoutKeyboard").innerHTML =
         keyboards[keyboard].svg;
     keyboards[keyboard].ordering.forEach(function(element) {
-        document.getElementById(element).onclick=function(){
+        document.getElementById(element).onclick = function(){
             if (activeId !== undefined) {
                 document.getElementById(activeId).classList.remove("hint");
             };
