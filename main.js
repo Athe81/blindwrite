@@ -207,7 +207,7 @@ function exercise() {
             }
             pos++;
             if (pos < TXT_LENGTH) {
-                hint.set(keyboard.getDOM(lessonString[pos]));
+                hint.set(keyboard.getDOM(lessonString[pos].toLowerCase()));
             } else {
                 calculatePoints();
                 hint.reset();
