@@ -19981,7 +19981,7 @@ function generateList(lang, keys, len) {
         var word = '';
 
         function lenFilter(value) {
-            return value.length <= maxLen;
+            return value.length <= maxLen && value.length != maxLen - 1;
         };
 
         word = words.filter(lenFilter)[Math.floor(Math.random() * words.length)];
