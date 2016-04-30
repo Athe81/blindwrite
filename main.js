@@ -188,7 +188,7 @@ function exercise() {
             keys.push(element.key);
         });
 
-        lessonString = generateList("de_DE", keys, TXT_LENGTH); /*TODO:  */
+        lessonString = generateList(config.get("language"), keys, TXT_LENGTH);
         updateView();
         hint.set(keyboard.getDOM(lessonString[pos].toLowerCase()));
     }
@@ -207,7 +207,7 @@ function exercise() {
             }
             pos++;
             if (pos < TXT_LENGTH) {
-                hint.set(keyboard.getDOM(lessonString[pos]));
+                hint.set(keyboard.getDOM(lessonString[pos].toLowerCase()));
             } else {
                 calculatePoints();
                 hint.reset();
