@@ -228,7 +228,7 @@ function exercise() {
             if (typeof(keyLogging[k]) === "undefined") {
                 return;
             }
-            var speed = 2000 - (keyLogging[k].time / keyLogging[k].count);
+            var speed = 2500 - (keyLogging[k].time / keyLogging[k].count);
             if (speed < 0) {
                 speed = 0;
             }
